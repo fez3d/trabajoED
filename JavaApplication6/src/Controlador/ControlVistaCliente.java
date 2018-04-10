@@ -9,6 +9,9 @@ import Vista.VistaCliente;
 import domain.TCP_Cliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +30,12 @@ public class ControlVistaCliente implements ActionListener {
         
         // APRIETAS ENVIAR MENSAJE**********************************************
         if(vistaCliente.getjButtonEnviar() == evento.getSource()){
-            
+            TCP_Cliente cliente = new TCP_Cliente();
+            try {
+                cliente.enviarMensaje(vistaCliente.getjTextAreaMensaje().getText());
+            } catch (IOException ex) {
+                Logger.getLogger(ControlVistaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         // APRIETAS SOLICITAR MENSAJES******************************************
