@@ -25,6 +25,8 @@ public class ControlVistaCliente implements ActionListener {
     
     public ControlVistaCliente(VistaCliente vistaCliente){
         this.vistaCliente = vistaCliente;
+        vistaCliente.getjButtonEnviar().addActionListener(this);
+        vistaCliente.getjButtonSolicitar().addActionListener(this);
     }
     
     @Override
@@ -32,12 +34,15 @@ public class ControlVistaCliente implements ActionListener {
         
         // APRIETAS ENVIAR MENSAJE**********************************************
         if(vistaCliente.getjButtonEnviar() == evento.getSource()){
-            TCP_Cliente cliente = new TCP_Cliente();
+            TCP_Cliente cliente = new TCP_Cliente();   
+            System.out.println(vistaCliente.getjTextFieldMensaje().getText());
+            vistaCliente.getjTextFieldMensaje().setText("");
             mensajesEnviados.add(vistaCliente.getjTextFieldMensaje().getText());
+            String mensaje = vistaCliente.getjTextFieldMensaje().getText();
             try {
-                cliente.enviarMensaje(vistaCliente.getjTextFieldMensaje().getText());
+                cliente.enviarMensaje(mensaje);
             } catch (IOException ex) {
-                Logger.getLogger(ControlVistaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Errores");
             }
         }
         

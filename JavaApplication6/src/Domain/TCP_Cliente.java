@@ -24,7 +24,7 @@ import java.net.Socket;
  */
 public class TCP_Cliente {
     
-    private static String host = "192.168.100.5";
+    private static String host = "192.168.100.15";
     private static int port = 8000;
     
     
@@ -34,20 +34,18 @@ public class TCP_Cliente {
         Socket echoSocket = new Socket(host, port);
         PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
         
-        BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+        //BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         
-        
-        String userInput;
         
         while (mensaje != null) {
             System.out.println("Enviando: " + mensaje);
             out.println(mensaje);
             
-            String serverMsg;
-            while ((serverMsg = in.readLine()) != null) {
-                System.out.println("Respuesta: " + serverMsg);
-                break;
-            }
+//            String serverMsg;
+//            while ((serverMsg = in.readLine()) != null) {
+//                System.out.println("Respuesta: " + serverMsg);
+//                break;
+//            }
         }
     }    
 }
