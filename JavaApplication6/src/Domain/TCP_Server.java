@@ -37,10 +37,14 @@ public class TCP_Server {
         
         String msg;
         while ((msg = in.readLine()) != null) {
-            System.out.println("Recibiendo: " + msg);
-            out.println("Recibi mensaje " + msg);
-            cola.enque(msg);
-            writer.write(msg);
+            if (msg == "deque"){
+                System.out.println("Deque");
+            }else{
+                System.out.println("Recibiendo: " + msg);
+                out.println("Recibi mensaje " + msg);
+                cola.enque(msg);
+                writer.write(msg);
+            }
         }
     }
 }
