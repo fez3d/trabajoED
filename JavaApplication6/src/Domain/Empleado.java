@@ -20,4 +20,11 @@ public class Empleado {
         this.nombre = nombre;
         this.salario = salario;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado:\t" + "nombre: " + nombre + " apellido: " + apellido + " salario: " + salario;
+    }
+    
+    
 }

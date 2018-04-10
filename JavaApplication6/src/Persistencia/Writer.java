@@ -3,6 +3,8 @@ package Persistencia;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
 
 
 /**
@@ -28,9 +30,26 @@ public class Writer {
     
     public void clearFile(){
         try{
-            pw = new PrintWriter("Asientos.txt", "UTF-8");
+            pw = new PrintWriter("Respaldo.txt", "UTF-8");
         }catch(IOException ex){
             System.out.println("Error al limpiar el archivo.");
         }
+    }
+    
+    public void deleteLine(){
+        String doc = "";
+        Reader reader = new Reader();
+        LinkedList lines = reader.read();
+        lines.pop();
+        
+        while(lines.peek() != null){
+            doc += lines.pop();
+            if (!lines.isEmpty()){
+                doc += "\n";
+            }
+        }
+        
+        clearFile();
+        write(doc);
     }
 }

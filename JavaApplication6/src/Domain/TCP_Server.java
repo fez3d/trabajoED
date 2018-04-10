@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Domain;
-import Persistencia.Writer;
+import Persistencia.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,12 +27,14 @@ public class TCP_Server {
     
     private static int port = 8000;
     private static Writer writer = new Writer();
+    private static Reader reader = new Reader();
     private static Queue<String> cola = new LinkedList<>();
     private static ArrayList<Empleado> empleados = new ArrayList<>();
     
     public static void main(String[] args) throws IOException {
-
-        
+        cola = reader.read();
+        //System.out.println(cola.size());
+        //System.out.println(cola.peek());
         
         ServerSocket server = new ServerSocket(port);
         Socket serverSocket = server.accept();
@@ -53,7 +55,7 @@ public class TCP_Server {
                 msgSub = msg + "      ";
             }
             
-            System.out.println("Recibiendo: " + msg);
+            System.out.println("\nRecibiendo: " + msg);
             
             switch (msgSub){
                 case "Enque":
@@ -62,26 +64,29 @@ public class TCP_Server {
                     if(TCP_Server.checkInput(msg)){
                         cola.add(msg);
                         writer.write(msg);
-                        out.println("Recibi mensaje " + msg + "\n\tMensaje agregado a la cola.");
-                        System.out.println("Exito.");
+                        out.println("Recibi mensaje " + msg + "\tMensaje agregado a la cola.");
+                        System.out.println("Exito - " + msg);
                     }else{
-                        out.println("Recibi mensaje " + msg + "\n\tError en Enque, formato inválido.");
-                        System.out.println("Fracaso.");
+                        out.println("Recibi mensaje " + msg + "\tError en Enque, formato inválido.");
+                        System.out.println("Fracaso - " + msg);
                     }
                     break;
                 case "Deque":
-                    System.out.println("Deque interpretado.");
-                    
-                    if(cola.peek() != null){
-                        TCP_Server.processInput(cola.poll());
-                        out.println("Recibi mensaje " + msg + "\n\t[Empleado]");
-                    }else{
-                        out.println("Recibi mensaje " + msg + "\n\tCola vacía.");
+                    if(msg.equals("Deque")){
+                        System.out.println("Deque interpretado.");
+
+                        if(cola.peek() != null){
+                            System.out.println("Deque: " + cola.peek().substring(6, cola.peek().length()));
+                            out.println("Recibi mensaje " + msg + TCP_Server.processInput(cola.poll()));
+                            writer.deleteLine();
+                        }else{
+                            out.println("Recibi mensaje " + msg + "\tCola vacía.");
+                        }
+                        break;
                     }
-                    break;
                 default:
-                    System.out.println("\n\tMensaje ignorado.");
-                    out.println("Recibi mensaje " + msg + "\n\tMensaje ignorado.");
+                    System.out.println("Mensaje ignorado.");
+                    out.println("Recibi mensaje " + msg + "\tMensaje ignorado.");
             }
         }        
     }
@@ -100,14 +105,18 @@ public class TCP_Server {
         return validador.checkDoubleIn(tokenizer.nextToken());
     }
     
-    private static void processInput(String input){
+    private static Empleado processInput(String input){
         Validador validador = new Validador();
+        input = input.substring(6, input.length());
         StringTokenizer tokenizer = new StringTokenizer(input, ",");
         
         String nombre = tokenizer.nextToken();
         String apellido = tokenizer.nextToken();
         Double salario = validador.toDoubleIn(tokenizer.nextToken());
         
-        empleados.add(new Empleado(nombre, apellido, salario));
+        Empleado empleado = new Empleado(nombre, apellido, salario);
+        empleados.add(empleado);
+        
+        return empleado;
     }
 }
