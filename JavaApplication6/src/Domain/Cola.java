@@ -1,5 +1,6 @@
 package Domain;
 
+import Domain.NodoGenerico;
 import java.util.NoSuchElementException;
 
 /**
@@ -53,21 +54,5 @@ public class Cola <T>{
         }
         
         return primero.getDato();
-    }
-    
-    public static void main(String[] args) {
-        Cola<Integer> cola = new Cola<Integer>();
-        
-        cola.enqueue(10);
-        cola.enqueue(15);
-        cola.enqueue(20);
-        try{
-            System.out.println(cola.dequeue());
-            System.out.println(cola.dequeue());
-            System.out.println(cola.dequeue());
-            System.out.println(cola.dequeue());
-        }catch (NoSuchElementException e){
-            System.out.println(e);
-        }
     }
 }

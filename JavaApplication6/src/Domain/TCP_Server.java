@@ -22,10 +22,11 @@ import java.net.Socket;
 public class TCP_Server {
     
     private static int port = 8000;
-    private static Cola cola = new Cola();
+    //private static Cola<String> cola = new Cola<String>();
     private static Writer writer = new Writer();
     
     public static void main(String[] args) throws IOException {
+        Cola<String> cola = new Cola<String>();
         
         ServerSocket server = new ServerSocket(port);
         Socket serverSocket = server.accept();
