@@ -44,8 +44,6 @@ public class TCP_Server {
         
         String msg;
         while ((msg = in.readLine()) != null) {
-//            System.out.println("Recibiendo: " + msg);
-//            out.println("Recibi mensaje " + msg);
             String msgSub;
             
             try{
@@ -56,7 +54,6 @@ public class TCP_Server {
             }
             
             System.out.println("Recibiendo: " + msg);
-            out.println("Recibi mensaje " + msg);
             
             switch (msgSub){
                 case "Enque":
@@ -65,9 +62,11 @@ public class TCP_Server {
                     if(TCP_Server.checkInput(msg)){
                         cola.add(msg);
                         writer.write(msg);
-                        out.println("Mensaje agregado a la cola.");
+                        out.println("Recibi mensaje " + msg + "\n\tMensaje agregado a la cola.");
+                        System.out.println("Exito.");
                     }else{
-                        out.println("Error en Enque, formato inválido.");
+                        out.println("Recibi mensaje " + msg + "\n\tError en Enque, formato inválido.");
+                        System.out.println("Fracaso.");
                     }
                     break;
                 case "Deque":
@@ -75,12 +74,14 @@ public class TCP_Server {
                     
                     if(cola.peek() != null){
                         TCP_Server.processInput(cola.poll());
+                        out.println("Recibi mensaje " + msg + "\n\t[Empleado]");
                     }else{
-                        out.println("Cola vacía.");
+                        out.println("Recibi mensaje " + msg + "\n\tCola vacía.");
                     }
                     break;
                 default:
-
+                    System.out.println("\n\tMensaje ignorado.");
+                    out.println("Recibi mensaje " + msg + "\n\tMensaje ignorado.");
             }
         }        
     }
