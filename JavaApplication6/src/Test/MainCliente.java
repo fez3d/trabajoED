@@ -7,6 +7,7 @@ package Test;
 
 import Controlador.ControlVistaCliente;
 import Vista.VistaCliente;
+import java.io.IOException;
 
 /**
  *
@@ -17,7 +18,7 @@ public class MainCliente {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         VistaCliente vistaCliente = new VistaCliente();
         vistaCliente.setVisible(true);

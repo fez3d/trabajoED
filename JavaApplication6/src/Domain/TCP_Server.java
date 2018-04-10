@@ -16,7 +16,7 @@ import java.net.Socket;
 
 /**
  *
- * @author eduardo.rodriguezg
+ * @author dmc-4
  */
 public class TCP_Server {
     
