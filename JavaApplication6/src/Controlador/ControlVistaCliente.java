@@ -29,6 +29,7 @@ public class ControlVistaCliente implements ActionListener {
         cliente = new TCP_Cliente();
         vistaCliente.getjButtonEnviar().addActionListener(this);
         vistaCliente.getjButtonSolicitar().addActionListener(this);
+        
     }
     
     @Override
@@ -44,7 +45,7 @@ public class ControlVistaCliente implements ActionListener {
             try {
                 cliente.enviarMensaje(mensaje);
             } catch (IOException ex) {
-                System.out.println("Error pene");
+                System.out.println("Error fatal");
             }
             vistaCliente.getjTextFieldMensaje().setText("");
         }
