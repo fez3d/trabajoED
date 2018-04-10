@@ -31,7 +31,7 @@ public class TCP_Server {
     private static Queue<String> cola = new LinkedList<>();
     private static ArrayList<Empleado> empleados = new ArrayList<>();
     
-    public static void main(String[] args) throws IOException {
+    public static void run() throws IOException {
         cola = reader.read();
         //System.out.println(cola.size());
         //System.out.println(cola.peek());
