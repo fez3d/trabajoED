@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package domain;
+import Persistencia.Writer;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,6 +22,8 @@ import java.net.Socket;
 public class TCP_Server {
     
     private static int port = 8000;
+    private static Cola<String> cola = new Cola();
+    private static Writer writer = new Writer();
     
     public static void main(String[] args) throws IOException {
         
@@ -36,6 +39,8 @@ public class TCP_Server {
         while ((msg = in.readLine()) != null) {
             System.out.println("Recibiendo: " + msg);
             out.println("Recibi mensaje " + msg);
+            cola.enque(msg);
+            writer.write(msg);
         }
     }
 }

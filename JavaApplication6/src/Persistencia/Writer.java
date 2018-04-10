@@ -13,9 +13,9 @@ public class Writer {
 
     private PrintWriter pw;
     
-    public void escribe(String linea){
+    public void write(String linea){
         try {
-            pw = new PrintWriter(new FileWriter("Asientos.txt", true));
+            pw = new PrintWriter(new FileWriter("Respaldo.txt", true));
             //Para reescribir:
             // new PrintWriter("Distribuidora.txt", "UTF-8");
             pw.println(linea);
