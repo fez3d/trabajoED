@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author eduardo.rodriguezg
+ * @author dmc-4
  */
 public class TCP_Server {
     

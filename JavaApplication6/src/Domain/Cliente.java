@@ -17,7 +17,7 @@ import java.net.Socket;
  */
 public class Cliente {
     
-    private static String host = "192.168.100.5";
+    private static String host = "192.168.100.15";
     private static int port = 8000;
     
     public static void main(String[] args) throws IOException {
@@ -26,12 +26,9 @@ public class Cliente {
         PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
         
         BufferedReader in =
-        new BufferedReader(
-            new InputStreamReader(echoSocket.getInputStream()));
+        new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         
-        BufferedReader stdIn
-                = new BufferedReader(
-                        new InputStreamReader(System.in));
+        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         
         String userInput;
         

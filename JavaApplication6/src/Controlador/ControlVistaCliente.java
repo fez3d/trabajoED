@@ -22,9 +22,11 @@ public class ControlVistaCliente implements ActionListener {
     
     ArrayList<String> mensajesEnviados = new ArrayList<String>();
     VistaCliente vistaCliente;
+    TCP_Cliente cliente;
     
-    public ControlVistaCliente(VistaCliente vistaCliente){
+    public ControlVistaCliente(VistaCliente vistaCliente) throws IOException{
         this.vistaCliente = vistaCliente;
+        cliente = new TCP_Cliente();
         vistaCliente.getjButtonEnviar().addActionListener(this);
         vistaCliente.getjButtonSolicitar().addActionListener(this);
     }
@@ -34,25 +36,30 @@ public class ControlVistaCliente implements ActionListener {
         
         // APRIETAS ENVIAR MENSAJE**********************************************
         if(vistaCliente.getjButtonEnviar() == evento.getSource()){
-            TCP_Cliente cliente = new TCP_Cliente();   
+               
             System.out.println(vistaCliente.getjTextFieldMensaje().getText());
-            vistaCliente.getjTextFieldMensaje().setText("");
+            
             mensajesEnviados.add(vistaCliente.getjTextFieldMensaje().getText());
             String mensaje = vistaCliente.getjTextFieldMensaje().getText();
-//            try {
-//                cliente.enviarMensaje(mensaje);
-//            } catch (IOException ex) {
-//                System.out.println("Error pene");
-//            }
+            try {
+                cliente.enviarMensaje(mensaje);
+            } catch (IOException ex) {
+                System.out.println("Error pene");
+            }
+            vistaCliente.getjTextFieldMensaje().setText("");
         }
         
         // APRIETAS SOLICITAR MENSAJES******************************************
         if(vistaCliente.getjButtonSolicitar() == evento.getSource()){
-            StringBuilder txt = new StringBuilder();
+            String string = "";
             for (int i = 0; i < mensajesEnviados.size(); i++) {
-                txt.append(mensajesEnviados.get(i));
+                if(i == mensajesEnviados.size()-1){
+                    string = string + mensajesEnviados.get(i);
+                } else {
+                    string = string + mensajesEnviados.get(i) + "\n";
+                }               
             }
-            vistaCliente.getjTextAreaMensajesEnviados().setText(mensajesEnviados.get(0));
+            vistaCliente.getjTextAreaMensajesEnviados().setText(string);
         }        
     }
     
