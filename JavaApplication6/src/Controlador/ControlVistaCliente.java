@@ -6,6 +6,7 @@
 package Controlador;
 
 import Vista.VistaCliente;
+import domain.TCP_Cliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

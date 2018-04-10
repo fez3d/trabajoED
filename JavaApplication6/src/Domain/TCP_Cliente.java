@@ -10,6 +10,8 @@
  */
 package domain;
 
+import Controlador.ControlVistaCliente;
+import Vista.VistaCliente;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,6 +28,10 @@ public class TCP_Cliente {
     private static int port = 8000;
     
     public static void main(String[] args) throws IOException {
+        
+        //VistaCliente vistaCliente = new VistaCliente();
+        //vistaCliente.setVisible(true);
+        //ControlVistaCliente control = new ControlVistaCliente(vistaCliente);
         
         Socket echoSocket = new Socket(host, port);
         PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
@@ -49,11 +55,7 @@ public class TCP_Cliente {
                 System.out.println("Respuesta: " + serverMsg);
                 break;
             }
-        }
-        
-//        
-//        
-        
+        }   
     }
     
 }
