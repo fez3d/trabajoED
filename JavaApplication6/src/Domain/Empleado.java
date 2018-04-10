@@ -11,9 +11,9 @@ package Domain;
  */
 public class Empleado {
     
-    private String nombre;
-    private String apellido;
-    private double salario;
+    private final String nombre;
+    private final String apellido;
+    private final double salario;
     
     public Empleado(String nombre, String apellido, double salario){
         this.apellido = apellido;
