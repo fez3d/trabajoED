@@ -22,7 +22,7 @@ import java.net.Socket;
 public class TCP_Server {
     
     private static int port = 8000;
-    private static Cola<String> cola = new Cola();
+    private static Cola cola = new Cola();
     private static Writer writer = new Writer();
     
     public static void main(String[] args) throws IOException {
@@ -37,13 +37,23 @@ public class TCP_Server {
         
         String msg;
         while ((msg = in.readLine()) != null) {
-            if (msg == "deque"){
-                System.out.println("Deque");
-            }else{
-                System.out.println("Recibiendo: " + msg);
-                out.println("Recibi mensaje " + msg);
-                cola.enque(msg);
-                writer.write(msg);
+            String msgSub = msg.substring(0, 5);
+            switch (msgSub){
+                case "Enque":
+                    System.out.println("enque");
+                    System.out.println("Recibiendo: " + msg);
+                    out.println("Recibi mensaje " + msg);
+                    cola.enque(msg);
+                    writer.write(msg);
+                    break;
+                case "Deque":
+                    //
+                    System.out.println("deque");
+                    break;
+                default:
+                    System.out.println("Recibiendo: " + msg);
+                    out.println("Recibi mensaje " + msg);
+
             }
         }
     }
