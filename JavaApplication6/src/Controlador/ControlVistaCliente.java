@@ -10,6 +10,7 @@ import domain.TCP_Cliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class ControlVistaCliente implements ActionListener {
     
+    ArrayList<String> mensajesEnviados = new ArrayList<String>();
     VistaCliente vistaCliente;
     
     public ControlVistaCliente(VistaCliente vistaCliente){
@@ -31,8 +33,9 @@ public class ControlVistaCliente implements ActionListener {
         // APRIETAS ENVIAR MENSAJE**********************************************
         if(vistaCliente.getjButtonEnviar() == evento.getSource()){
             TCP_Cliente cliente = new TCP_Cliente();
+            mensajesEnviados.add(vistaCliente.getjTextFieldMensaje().getText());
             try {
-                cliente.enviarMensaje(vistaCliente.getjTextAreaMensaje().getText());
+                cliente.enviarMensaje(vistaCliente.getjTextFieldMensaje().getText());
             } catch (IOException ex) {
                 Logger.getLogger(ControlVistaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -40,7 +43,9 @@ public class ControlVistaCliente implements ActionListener {
         
         // APRIETAS SOLICITAR MENSAJES******************************************
         if(vistaCliente.getjButtonSolicitar() == evento.getSource()){
-            
+            for (int i = 0; i < mensajesEnviados.size(); i++) {
+                vistaCliente.getjTextAreaMensajesEnviados().setText(mensajesEnviados.get(i));
+            }
         }        
     }
     
