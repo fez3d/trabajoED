@@ -18,7 +18,7 @@ import java.net.Socket;
  *
  * @author eduardo.rodriguezg
  */
-public class TCP_Server {
+public class Servidor {
     
     private static int port = 8000;
     
