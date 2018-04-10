@@ -39,18 +39,20 @@ public class ControlVistaCliente implements ActionListener {
             vistaCliente.getjTextFieldMensaje().setText("");
             mensajesEnviados.add(vistaCliente.getjTextFieldMensaje().getText());
             String mensaje = vistaCliente.getjTextFieldMensaje().getText();
-            try {
-                cliente.enviarMensaje(mensaje);
-            } catch (IOException ex) {
-                System.out.println("Errores");
-            }
+//            try {
+//                cliente.enviarMensaje(mensaje);
+//            } catch (IOException ex) {
+//                System.out.println("Error pene");
+//            }
         }
         
         // APRIETAS SOLICITAR MENSAJES******************************************
         if(vistaCliente.getjButtonSolicitar() == evento.getSource()){
+            StringBuilder txt = new StringBuilder();
             for (int i = 0; i < mensajesEnviados.size(); i++) {
-                vistaCliente.getjTextAreaMensajesEnviados().setText(mensajesEnviados.get(i));
+                txt.append(mensajesEnviados.get(i));
             }
+            vistaCliente.getjTextAreaMensajesEnviados().setText(mensajesEnviados.get(0));
         }        
     }
     
