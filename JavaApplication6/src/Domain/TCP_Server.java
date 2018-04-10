@@ -14,6 +14,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -26,7 +28,7 @@ public class TCP_Server {
     private static Writer writer = new Writer();
     
     public static void main(String[] args) throws IOException {
-        Cola<String> cola = new Cola<String>();
+        Queue<String> cola = new LinkedList<>();
         
         ServerSocket server = new ServerSocket(port);
         Socket serverSocket = server.accept();
@@ -44,7 +46,7 @@ public class TCP_Server {
                     System.out.println("enque");
                     System.out.println("Recibiendo: " + msg);
                     out.println("Recibi mensaje " + msg);
-                    cola.enque(msg);
+                    cola.add(msg);
                     writer.write(msg);
                     break;
                 case "Deque":
