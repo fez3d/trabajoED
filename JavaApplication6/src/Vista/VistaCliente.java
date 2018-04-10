@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author dmc-4
@@ -29,30 +32,30 @@ public class VistaCliente extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        jTextAreaMensaje = new javax.swing.JTextArea();
+        jButtonEnviar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextAreaMensajesEnviados = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonSolicitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Mensaje:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaMensaje.setColumns(20);
+        jTextAreaMensaje.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaMensaje);
 
-        jButton1.setText("Enviar");
+        jButtonEnviar.setText("Enviar");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextAreaMensajesEnviados.setColumns(20);
+        jTextAreaMensajesEnviados.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaMensajesEnviados);
 
         jLabel2.setText("Mensajes Enviados:");
 
-        jButton2.setText("Solicitar Mensajes Enviados");
+        jButtonSolicitar.setText("Solicitar Mensajes Enviados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,9 +73,9 @@ public class VistaCliente extends javax.swing.JFrame {
                 .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(197, 197, 197)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jButtonSolicitar)
                 .addGap(173, 173, 173))
         );
         layout.setVerticalGroup(
@@ -88,8 +91,8 @@ public class VistaCliente extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonEnviar)
+                    .addComponent(jButtonSolicitar))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
 
@@ -131,14 +134,31 @@ public class VistaCliente extends javax.swing.JFrame {
         });
     }
 
+    public JButton getjButtonEnviar() {
+        return jButtonEnviar;
+    }
+
+    public JButton getjButtonSolicitar() {
+        return jButtonSolicitar;
+    }
+
+    public JTextArea getjTextAreaMensaje() {
+        return jTextAreaMensaje;
+    }
+
+    public JTextArea getjTextAreaMensajesEnviados() {
+        return jTextAreaMensajesEnviados;
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonEnviar;
+    private javax.swing.JButton jButtonSolicitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextAreaMensaje;
+    private javax.swing.JTextArea jTextAreaMensajesEnviados;
     // End of variables declaration//GEN-END:variables
 }
