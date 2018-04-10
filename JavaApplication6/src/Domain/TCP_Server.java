@@ -3,86 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package domain;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  *
- * @author Moises
+ * @author eduardo.rodriguezg
  */
 public class TCP_Server {
     
-    public static void main(String[] args) {
-        System.out.println("****** SERVIDOR ******");
-        //declara un TCP socket objecto y lo inicializa como null
-        ServerSocket serverSocket = null;
-        //Crea el número del puerto
-        int port = 1234;
-        
-        try{
-            //Crea el server Socket TCP
-            serverSocket = new ServerSocket(port);
-            System.out.println("TCP server creado en el puerto " + port);
-        }catch(IOException e){
-            //Se ejecuta cuando el servidor no puede ser creado
-            System.out.println("Error: El servidor con el puerto = "+port+ " no se pudo crear");
-        }//End try-Catch
-        
-        //Se crea un ciclo sin fin
-        while(true){
-            Socket clienteSocket = null;
-            try{
-                //Empieza a escuchar la solicitud entrante del cliente
-                System.out.println("[TCP Server] esperando la solicitud entrante...");
-                clienteSocket = serverSocket.accept();
-            }catch(IOException e){
-                System.out.println("Error: no se puede aceptar la solicitud del cliente");
-                return;
-            }//End try-Catch
-            
-            try{
-                procesarSolicitudCliente(clienteSocket);
-            }catch(IOException e){
-                
-            }//End try-Catch
-        }//End while
-    }//End funcion main
+    private static int port = 8000;
     
-    public static void procesarSolicitudCliente(Socket clienteSocket) throws IOException{
+    public static void main(String[] args) throws IOException {
         
+        ServerSocket server = new ServerSocket(port);
+        Socket serverSocket = server.accept();
         
-        System.out.println("[TCP Server] procesando la solicitud entrante...");
-        try{
-            OutputStream salida = clienteSocket.getOutputStream();
-            InputStream entrada = clienteSocket.getInputStream();
-            
-            PrintStream printStream = new PrintStream(salida);
-//            InputStreamReader inputStream = new InputStreamReader(entrada);
-            
-            //Lee el mensaje recibido
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(entrada));
-            String mensaje = null;
-            
-            mensaje = bufferedReader.readLine();
-
-            System.out.println("Mensaje recibido del cliente: \n\t" + mensaje);
-            
-            //Envia una respuesta al cliente
-            String mensajeEnviado = "Saludos del servidor\n";
-            printStream.println(mensajeEnviado);
-            printStream.close();
-        }catch(Exception e){
-            System.out.println("[TCP server] el mensaje no se pudo enviar");
-        }
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(serverSocket.getInputStream()));
+        
+        PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+        
+        String msg;
+        while ((msg = in.readLine()) != null) {
+            System.out.println("Recibiendo: " + msg);
+            out.println("Recibi mensaje " + msg);
+        }     
+        
     }
-    
     
 }
