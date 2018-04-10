@@ -23,21 +23,18 @@ public class Servidor {
     private static int port = 8000;
     
     public static void main(String[] args) throws IOException {
-        
         ServerSocket server = new ServerSocket(port);
         Socket serverSocket = server.accept();
-        
+
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(serverSocket.getInputStream()));
-        
+
         PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
-        
+
         String msg;
         while ((msg = in.readLine()) != null) {
             System.out.println("Recibiendo: " + msg);
             out.println("Recibi mensaje " + msg);
-        }     
-        
+        }
     }
-    
 }

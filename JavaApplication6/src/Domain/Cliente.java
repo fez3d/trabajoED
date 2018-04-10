@@ -17,7 +17,7 @@ import java.net.Socket;
  */
 public class Cliente {
     
-    private static String host = "127.0.0.1";
+    private static String host = "192.168.100.5";
     private static int port = 8000;
     
     public static void main(String[] args) throws IOException {
@@ -45,10 +45,7 @@ public class Cliente {
                 break;
             }
         }
-        
-//        
-//        
-        
+//  
+//     
     }
-    
 }
