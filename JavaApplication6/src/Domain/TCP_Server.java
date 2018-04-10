@@ -36,8 +36,6 @@ public class TCP_Server {
         while ((msg = in.readLine()) != null) {
             System.out.println("Recibiendo: " + msg);
             out.println("Recibi mensaje " + msg);
-        }     
-        
+        }
     }
-    
 }
